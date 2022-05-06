@@ -123,7 +123,25 @@ class Recruiters_api extends Recruiters
 
     public function delete_by_id()
     {
-        // Later use
+        if (!isset($_GET['ID'])) {
+            send(400, 'error', 'pass a recruiter id');
+            die();
+        }
+        $this->Recruiters->recruiter_id = $_GET['ID']; // should pass the recruiter id in URL
+
+        // Check for recruiter existance
+        $all_data = $this->Recruiters->read_row();
+
+        if(!$all_data){
+            send(400, 'error', 'no recruiter found for ID: ' . $_GET['ID']);
+            die();
+        }
+
+        if ($this->Recruiters->delete_row()) {
+            send(200, 'message', 'recruiter deleted successfully');
+        } else {
+            send(400, 'error', 'recruiter cannot be deleted');
+        }
     }
 }
 

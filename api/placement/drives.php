@@ -150,7 +150,7 @@ class Drives_api extends Drives
             send(400, 'error', 'pass a drive id');
             die();
         }
-        $this->Drive->timetable_id = $_GET['ID']; // should pass the drive id in URL
+        $this->Drive->drive_id = $_GET['ID']; // should pass the drive id in URL
 
         // Check for drive existance
         $all_data = $this->Drive->read_row();

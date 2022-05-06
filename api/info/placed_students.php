@@ -131,7 +131,25 @@ class Placed_students_api extends Placed_students
 
     public function delete_by_id()
     {
-        // Later use
+        if (!isset($_GET['ID'])) {
+            send(400, 'error', 'pass a student id');
+            die();
+        }
+        $this->Placed_students->placed_student_id = $_GET['ID']; // should pass the student id in URL
+
+        // Check for student existance
+        $all_data = $this->Placed_students->read_row();
+
+        if(!$all_data){
+            send(400, 'error', 'no student found for ID: ' . $_GET['ID']);
+            die();
+        }
+
+        if ($this->Placed_students->delete_row()) {
+            send(200, 'message', 'student deleted successfully');
+        } else {
+            send(400, 'error', 'student cannot be deleted');
+        }
     }
 }
 

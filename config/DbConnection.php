@@ -3,7 +3,7 @@
 class DbConnection
 {
     private $host = 'localhost';
-    private $db_name = 'faculty_profile_maintenance';
+    private $db_name = 'placement_assistance';
     private $username = 'root';
     private $password = '';
     private $conn;

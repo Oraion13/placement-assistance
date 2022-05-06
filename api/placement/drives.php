@@ -71,7 +71,10 @@ class Drives_api extends Drives
         $this->Drive->job_description = $_POST['job_description'];
         $this->Drive->about_company = $_POST['about_company'];
         $this->Drive->eligibility_criteria = $_POST['eligibility_criteria'];
-        $this->Drive->last_date = $_POST['last_date'];
+
+        $last_date = date('Y-m-01', strtotime($_POST['last_date']));
+        $this->Drive->last_date = $last_date;
+
         $this->Drive->document = file_get_contents($_FILES['document']['tmp_name']);
         $this->Drive->document_type = $_FILES['document']['type'];
 

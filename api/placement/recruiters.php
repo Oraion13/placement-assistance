@@ -108,7 +108,7 @@ class Recruiters_api extends Recruiters
 
         // If recruiters already exists, update the recruiters that changed
         if ($all_data) {
-            $this->Recruiters->user_info_id = $all_data['user_info_id'];
+            $this->Recruiters->recruiter_id = $all_data['recruiter_id'];
 
             $this->update_by_id($all_data['mail'], $data->mail, 'mail');
             $this->update_by_id($all_data['company'], $data->company, 'company');

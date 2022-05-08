@@ -1,0 +1,291 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 08, 2022 at 07:41 AM
+-- Server version: 8.0.28
+-- PHP Version: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `placement_assistance`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placement_admin`
+--
+
+CREATE TABLE `placement_admin` (
+  `admin_id` int NOT NULL,
+  `admin_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `placement_admin`
+--
+
+INSERT INTO `placement_admin` (`admin_id`, `admin_name`, `password`) VALUES
+(1, 'admin', '$2a$10$JHeFKGS6gFfg0IapqVt4BOx4vIP3zPPEQOw0D07aPiYw4Z1K96kp.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placement_company_logos`
+--
+
+CREATE TABLE `placement_company_logos` (
+  `logo_id` int NOT NULL,
+  `logo_for` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `logo_type` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `logo` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placement_drives`
+--
+
+CREATE TABLE `placement_drives` (
+  `drive_id` int NOT NULL,
+  `job_description` text COLLATE utf8mb4_general_ci,
+  `about_company` text COLLATE utf8mb4_general_ci,
+  `eligibility_criteria` text COLLATE utf8mb4_general_ci,
+  `last_date` date DEFAULT NULL,
+  `document` longblob,
+  `document_type` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placement_placed_students`
+--
+
+CREATE TABLE `placement_placed_students` (
+  `placed_student_id` int NOT NULL,
+  `student_id` int NOT NULL,
+  `company` text COLLATE utf8mb4_general_ci,
+  `CTC` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placement_recruiters`
+--
+
+CREATE TABLE `placement_recruiters` (
+  `recruiter_id` int NOT NULL,
+  `company` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `mail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placement_students_profile`
+--
+
+CREATE TABLE `placement_students_profile` (
+  `student_id` int NOT NULL,
+  `first_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `USN` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `register_number` bigint NOT NULL,
+  `phone` bigint NOT NULL,
+  `mail` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `current_semester` int NOT NULL,
+  `branch_of_study` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `sslc_aggregate` float NOT NULL,
+  `12th_diploma_aggregate` float NOT NULL,
+  `ug_aggregate` float NOT NULL,
+  `pg_aggregate` float NOT NULL,
+  `current_backlogs` int NOT NULL,
+  `history_of_backlogs` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `detained_years` int NOT NULL,
+  `annual_income` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `placement_students_profile`
+--
+
+INSERT INTO `placement_students_profile` (`student_id`, `first_name`, `last_name`, `USN`, `register_number`, `phone`, `mail`, `date_of_birth`, `current_semester`, `branch_of_study`, `sslc_aggregate`, `12th_diploma_aggregate`, `ug_aggregate`, `pg_aggregate`, `current_backlogs`, `history_of_backlogs`, `detained_years`, `annual_income`) VALUES
+(1, 'Ram', 'Chandran', 'ram34', 950018104015, 0, '', '0000-00-00', 0, 'select', 0, 0, 0, 0, 0, 'Y/N', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placement_students_register`
+--
+
+CREATE TABLE `placement_students_register` (
+  `student_register_id` int NOT NULL,
+  `drive_id` int DEFAULT NULL,
+  `student_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `slogin`
+--
+
+CREATE TABLE `slogin` (
+  `Name` varchar(25) NOT NULL,
+  `USN` varchar(10) NOT NULL,
+  `PASSWORD` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Question` varchar(255) NOT NULL,
+  `Answer` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `slogin`
+--
+
+INSERT INTO `slogin` (`Name`, `USN`, `PASSWORD`, `Email`, `Question`, `Answer`) VALUES
+('AjayKumar', 'ajay34', '$2y$10$5L0iNpoCHjJIVQGq4W3cQuceZgEWMFZ7uDBd8EgnrA9nlQY.cYRHW', 'cdv@gmail.com', 'What is your nickname?', 'VK'),
+('Ram', 'ram34', '$2y$10$A3DdWpDHHU0aO4Z0LwBpieK21pKGgbBwfApYArWYSMZZngxSebDtO', 'ram345@gmail.com', 'What is your fav spot?', 'USA');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `placement_admin`
+--
+ALTER TABLE `placement_admin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `placement_company_logos`
+--
+ALTER TABLE `placement_company_logos`
+  ADD PRIMARY KEY (`logo_id`);
+
+--
+-- Indexes for table `placement_drives`
+--
+ALTER TABLE `placement_drives`
+  ADD PRIMARY KEY (`drive_id`);
+
+--
+-- Indexes for table `placement_placed_students`
+--
+ALTER TABLE `placement_placed_students`
+  ADD PRIMARY KEY (`placed_student_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `placement_recruiters`
+--
+ALTER TABLE `placement_recruiters`
+  ADD PRIMARY KEY (`recruiter_id`);
+
+--
+-- Indexes for table `placement_students_profile`
+--
+ALTER TABLE `placement_students_profile`
+  ADD PRIMARY KEY (`student_id`),
+  ADD UNIQUE KEY `Email` (`mail`),
+  ADD UNIQUE KEY `USN` (`USN`),
+  ADD UNIQUE KEY `Register Number` (`register_number`);
+
+--
+-- Indexes for table `placement_students_register`
+--
+ALTER TABLE `placement_students_register`
+  ADD PRIMARY KEY (`student_register_id`),
+  ADD KEY `drive_id` (`drive_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `slogin`
+--
+ALTER TABLE `slogin`
+  ADD UNIQUE KEY `USN` (`USN`,`Email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `placement_admin`
+--
+ALTER TABLE `placement_admin`
+  MODIFY `admin_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `placement_company_logos`
+--
+ALTER TABLE `placement_company_logos`
+  MODIFY `logo_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `placement_drives`
+--
+ALTER TABLE `placement_drives`
+  MODIFY `drive_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `placement_placed_students`
+--
+ALTER TABLE `placement_placed_students`
+  MODIFY `placed_student_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `placement_recruiters`
+--
+ALTER TABLE `placement_recruiters`
+  MODIFY `recruiter_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `placement_students_profile`
+--
+ALTER TABLE `placement_students_profile`
+  MODIFY `student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `placement_students_register`
+--
+ALTER TABLE `placement_students_register`
+  MODIFY `student_register_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `placement_placed_students`
+--
+ALTER TABLE `placement_placed_students`
+  ADD CONSTRAINT `placement_placed_students_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `placement_students_profile` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `placement_students_register`
+--
+ALTER TABLE `placement_students_register`
+  ADD CONSTRAINT `placement_students_register_ibfk_1` FOREIGN KEY (`drive_id`) REFERENCES `placement_drives` (`drive_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `placement_students_register_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `placement_students_profile` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+        
+        input[type=submit] {
+            background-color: green;
+            color: white;
+            padding: 12px 20px;
+            margin-left: 500px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        input[type=submit]:hover {
+            background-color: red;
+            tab-size: 4;
+        }
+        
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3>ADD NEW DRIVE</h3>
+
+    <div class="container">
+        <form action="Drives.php">
+            <label for="Job Description"> Job Description</label>
+            <input type="text" id="JobDescription" name="Job Description" placeholder="Enter the Job Description">
+
+            <label for="About Company">About Company</label>
+            <input type="text" id="AboutCompany" name="About Company" placeholder="Enter About Company Details">
+
+            <label for="Eligibility Criteria">Eligibility Criteria</label>
+            <input type="text" id="EligibilityCriteria" name="Eligibility Criteria" placeholder="Enter The Eligibility Criteria">
+
+            <label for="last Date">Last Date To Apply</label>
+            <input type="date" id="lastDate" name=" last Date" placeholder="Enter The last Date">
+            <br><br>
+
+            <label for="Documet">Document</label>
+            <input type="file" id="Document" name="JD Document" placeholder="Upload the File">
+            <br>
+            <input type="submit" value="POST" style="height:50px; width:100px; font-size: 15px;">
+        </form>
+    </div>
+
+</body>
+
+</html>

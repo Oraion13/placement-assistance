@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2022 at 07:41 AM
+-- Generation Time: May 22, 2022 at 03:54 PM
 -- Server version: 8.0.28
 -- PHP Version: 8.1.4
 
@@ -52,6 +52,27 @@ CREATE TABLE `placement_company_logos` (
   `logo_type` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `logo` longblob
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placement_departments`
+--
+
+CREATE TABLE `placement_departments` (
+  `department_id` int NOT NULL,
+  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `placement_departments`
+--
+
+INSERT INTO `placement_departments` (`department_id`, `department`) VALUES
+(1, 'Department Of Civil Engineering'),
+(2, 'Department Of Mechanical Engineering'),
+(3, 'Department Of Electronics And Communication Engineering'),
+(4, 'Department Of Computer Science And Engineering');
 
 -- --------------------------------------------------------
 
@@ -107,11 +128,11 @@ CREATE TABLE `placement_students_profile` (
   `last_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `USN` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `register_number` bigint NOT NULL,
+  `department_id` int DEFAULT NULL,
   `phone` bigint NOT NULL,
   `mail` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `date_of_birth` date NOT NULL,
   `current_semester` int NOT NULL,
-  `branch_of_study` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `sslc_aggregate` float NOT NULL,
   `12th_diploma_aggregate` float NOT NULL,
   `ug_aggregate` float NOT NULL,
@@ -126,8 +147,8 @@ CREATE TABLE `placement_students_profile` (
 -- Dumping data for table `placement_students_profile`
 --
 
-INSERT INTO `placement_students_profile` (`student_id`, `first_name`, `last_name`, `USN`, `register_number`, `phone`, `mail`, `date_of_birth`, `current_semester`, `branch_of_study`, `sslc_aggregate`, `12th_diploma_aggregate`, `ug_aggregate`, `pg_aggregate`, `current_backlogs`, `history_of_backlogs`, `detained_years`, `annual_income`) VALUES
-(1, 'Ram', 'Chandran', 'ram34', 950018104015, 0, '', '0000-00-00', 0, 'select', 0, 0, 0, 0, 0, 'Y/N', 0, 0);
+INSERT INTO `placement_students_profile` (`student_id`, `first_name`, `last_name`, `USN`, `register_number`, `department_id`, `phone`, `mail`, `date_of_birth`, `current_semester`, `sslc_aggregate`, `12th_diploma_aggregate`, `ug_aggregate`, `pg_aggregate`, `current_backlogs`, `history_of_backlogs`, `detained_years`, `annual_income`) VALUES
+(10, 'Kannan', 'B', 'KSD', 950018104018, 2, 9626512657, 'kannan11132@gmail.com', '2022-05-10', 4, 87, 34, 67, 78, 1, 'Y', 0, 345678);
 
 -- --------------------------------------------------------
 
@@ -162,7 +183,7 @@ CREATE TABLE `slogin` (
 
 INSERT INTO `slogin` (`Name`, `USN`, `PASSWORD`, `Email`, `Question`, `Answer`) VALUES
 ('AjayKumar', 'ajay34', '$2y$10$5L0iNpoCHjJIVQGq4W3cQuceZgEWMFZ7uDBd8EgnrA9nlQY.cYRHW', 'cdv@gmail.com', 'What is your nickname?', 'VK'),
-('Ram', 'ram34', '$2y$10$A3DdWpDHHU0aO4Z0LwBpieK21pKGgbBwfApYArWYSMZZngxSebDtO', 'ram345@gmail.com', 'What is your fav spot?', 'USA');
+('KARTHICK', 'KSD', '$2y$10$QdjASrVxEeJakf9D4SsXvOMdNNCdVuD.iPF4DFnTcKjjM0Yk3jPTm', 'kannan11132@gmail.com', 'What is your enemy name?', 'KUTTY');
 
 --
 -- Indexes for dumped tables
@@ -179,6 +200,12 @@ ALTER TABLE `placement_admin`
 --
 ALTER TABLE `placement_company_logos`
   ADD PRIMARY KEY (`logo_id`);
+
+--
+-- Indexes for table `placement_departments`
+--
+ALTER TABLE `placement_departments`
+  ADD PRIMARY KEY (`department_id`);
 
 --
 -- Indexes for table `placement_drives`
@@ -206,7 +233,8 @@ ALTER TABLE `placement_students_profile`
   ADD PRIMARY KEY (`student_id`),
   ADD UNIQUE KEY `Email` (`mail`),
   ADD UNIQUE KEY `USN` (`USN`),
-  ADD UNIQUE KEY `Register Number` (`register_number`);
+  ADD UNIQUE KEY `Register Number` (`register_number`),
+  ADD KEY `department_id` (`department_id`);
 
 --
 -- Indexes for table `placement_students_register`
@@ -239,16 +267,22 @@ ALTER TABLE `placement_company_logos`
   MODIFY `logo_id` int NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `placement_departments`
+--
+ALTER TABLE `placement_departments`
+  MODIFY `department_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `placement_drives`
 --
 ALTER TABLE `placement_drives`
-  MODIFY `drive_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `drive_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `placement_placed_students`
 --
 ALTER TABLE `placement_placed_students`
-  MODIFY `placed_student_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `placed_student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `placement_recruiters`
@@ -260,13 +294,13 @@ ALTER TABLE `placement_recruiters`
 -- AUTO_INCREMENT for table `placement_students_profile`
 --
 ALTER TABLE `placement_students_profile`
-  MODIFY `student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `placement_students_register`
 --
 ALTER TABLE `placement_students_register`
-  MODIFY `student_register_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `student_register_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -277,6 +311,12 @@ ALTER TABLE `placement_students_register`
 --
 ALTER TABLE `placement_placed_students`
   ADD CONSTRAINT `placement_placed_students_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `placement_students_profile` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `placement_students_profile`
+--
+ALTER TABLE `placement_students_profile`
+  ADD CONSTRAINT `placement_students_profile_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `placement_departments` (`department_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `placement_students_register`

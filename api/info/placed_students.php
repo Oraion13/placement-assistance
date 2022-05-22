@@ -6,10 +6,10 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-require_once '../../../../config/DbConnection.php';
-require_once '../../../../models/Placed_students.php';
-require_once '../../../../utils/send.php';
-require_once '../../../../utils/loggedin.php';
+require_once '../../config/DbConnection.php';
+require_once '../../models/Placed_students.php';
+require_once '../../utils/send.php';
+require_once '../../utils/loggedin.php';
 
 class Placed_students_api extends Placed_students
 {

@@ -1,0 +1,130 @@
+        nav a {
+        text-decoration: none;
+        padding: 0.3em;
+        margin: 0.2em;
+        border: 0.1em solid black;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px
+    }
+    
+    nav a:hover {
+        cursor: pointer;
+        background-color: grey;
+        color: aliceblue;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px
+    }
+    
+    .container {
+        padding: 28px;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px
+    }
+    
+    nav ul {
+        list-style-type: none;
+        display: flex;
+        align-items: flex;
+        justify-content: right;
+    }
+    
+    nav {}
+    
+    img {
+        height: 10em;
+        width: auto;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px
+    }
+    
+    #demobox {
+        background-color: none;
+        margin-left: 40px;
+        margin-right: 40px;
+        margin-top: 15px;
+        margin-bottom: 0px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    
+    .header img {
+        float: left;
+        width: 100px;
+        height: 100px;
+        background: none;
+    }
+    
+    .header h1 {
+        position: relative;
+        top: 18px;
+        left: 10px;
+    }
+    
+    .footer {
+        padding-bottom: 2em;
+        border-top: 1.5px solid #eee;
+        padding: 2em 0;
+        background-color: black;
+        display: block;
+    }
+    
+    .ftr_navi ul li {}
+    
+    .ftr_navi ul li a {
+        padding: 5px 0;
+        color: #848484;
+        font-size: .95em;
+    }
+    
+    .ftr_navi ul li a:hover,
+    .get_in_touch a:hover,
+    .ftr-logo p a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+    
+    .ftr-logo p {
+        margin-top: 1em;
+        color: #848484;
+        line-height: 1.8em;
+        font-size: 0.95em;
+    }
+    
+    .ftr-logo p a {
+        color: #848484;
+    }
+    
+    .ftr {
+        margin-top: 0em;
+        padding: 0;
+    }
+    
+    .ftr_navi.ftr ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .ftr-logo {
+        margin-top: 7em;
+    }
+    
+    .get_in_touch h3,
+    .ftr_navi h3 {
+        letter-spacing: 2px;
+        font-family: 'Poiret One', cursive;
+        font-size: 1em;
+        font-weight: 600;
+        margin-bottom: 1em;
+        color: #fff;
+    }
+    
+    .get_in_touch p {
+        color: #848484;
+        font-size: .95em;
+        padding: 0px 0;
+    }
+    
+    .get_in_touch a {
+        color: #848484;
+        font-size: 0.9em;
+        text-decoration: none;

@@ -6,10 +6,10 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-require_once '../../../../config/DbConnection.php';
-require_once '../../../../models/Company_logos.php';
-require_once '../../../../utils/send.php';
-require_once '../../../../utils/loggedin.php';
+require_once '../../config/DbConnection.php';
+require_once '../../models/Company_logos.php';
+require_once '../../utils/send.php';
+require_once '../../utils/loggedin.php';
 
 class Company_logos_api extends Company_logos
 {
@@ -70,7 +70,7 @@ class Company_logos_api extends Company_logos
         $data = json_decode(file_get_contents("php://input"));
 
         // Clean the data
-        $this->Company_logos->logo_for = $_POST['logo_for'];
+        $this->Company_logos->logo_for = $_FILES['logo']['name'];
         $this->Company_logos->logo_type = $_FILES['logo']['logo_type'];
         $this->Company_logos->logo = file_get_contents($_FILES['logo']['tmp_name']);
 
@@ -99,7 +99,7 @@ class Company_logos_api extends Company_logos
 
         // Clean the data
         $this->Company_logos->logo_id =  $data->logo_id;
-        $this->Company_logos->logo_for = $_POST['logo_for'];
+        $this->Company_logos->logo_for =  $_FILES['logo']['name'];
         $this->Company_logos->logo_type = $_FILES['logo']['logo_type'];
         $this->Company_logos->logo = file_get_contents($_FILES['logo']['tmp_name']);
 
@@ -110,8 +110,8 @@ class Company_logos_api extends Company_logos
         if ($all_data) {
             $this->Company_logos->logo_id = $all_data['logo_id'];
 
-            $this->update_by_id($all_data['logo_for'], $_FILES['logo']['logo_for'], 'logo_for');
-            $this->update_by_id($all_data['logo_type'], $_POST['logo_type'], 'logo_type');
+            $this->update_by_id($all_data['logo_for'],  $_FILES['logo']['name'], 'logo_for');
+            $this->update_by_id($all_data['logo_type'],  $_FILES['logo']['type'], 'logo_type');
             $this->update_by_id($all_data['logo'], file_get_contents($_FILES['logo']['tmp_name']), 'logo');
 
             // If updated successfully, get the data, else throw an error message 

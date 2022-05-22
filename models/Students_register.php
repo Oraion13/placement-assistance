@@ -28,12 +28,11 @@ class Students_register
             . '.drive_id, ' . $this->table . '.student_id, ' . $this->drives . '.drive_id, '
             . $this->drives . '.job_description, ' . $this->drives . '.about_company, '
             . $this->drives . '.eligibility_criteria, ' . $this->drives . '.last_date, '
-            . $this->drives . '.document, ' . $this->drives . '.document_type, '
             . $this->students_profile . '.first_name, '
             . $this->students_profile . '.last_name, ' . $this->students_profile . '.USN, '
             . $this->students_profile . '.register_number, ' . $this->students_profile . '.phone, '
             . $this->students_profile . '.mail, ' . $this->students_profile . '.date_of_birth, '
-            . $this->students_profile . '.current_semester, ' . $this->students_profile . '.branch_of_study, '
+            . $this->students_profile . '.current_semester, ' . $this->students_profile . '.department_id, '
             . $this->students_profile . '.sslc_aggregate, ' . $this->students_profile . '.12th_diploma_aggregate, '
             . $this->students_profile . '.ug_aggregate, ' . $this->students_profile . '.pg_aggregate, '
             . $this->students_profile . '.current_backlogs, ' . $this->students_profile . '.history_of_backlogs, '
@@ -61,12 +60,11 @@ class Students_register
         . '.drive_id, ' . $this->table . '.student_id, ' . $this->drives . '.drive_id, '
         . $this->drives . '.job_description, ' . $this->drives . '.about_company, '
         . $this->drives . '.eligibility_criteria, ' . $this->drives . '.last_date, '
-        . $this->drives . '.document, ' . $this->drives . '.document_type, '
         . $this->students_profile . '.first_name, '
         . $this->students_profile . '.last_name, ' . $this->students_profile . '.USN, '
         . $this->students_profile . '.register_number, ' . $this->students_profile . '.phone, '
         . $this->students_profile . '.mail, ' . $this->students_profile . '.date_of_birth, '
-        . $this->students_profile . '.current_semester, ' . $this->students_profile . '.branch_of_study, '
+        . $this->students_profile . '.current_semester, ' . $this->students_profile . '.department_id, '
         . $this->students_profile . '.sslc_aggregate, ' . $this->students_profile . '.12th_diploma_aggregate, '
         . $this->students_profile . '.ug_aggregate, ' . $this->students_profile . '.pg_aggregate, '
         . $this->students_profile . '.current_backlogs, ' . $this->students_profile . '.history_of_backlogs, '
@@ -103,18 +101,17 @@ class Students_register
         . '.drive_id, ' . $this->table . '.student_id, ' . $this->drives . '.drive_id, '
         . $this->drives . '.job_description, ' . $this->drives . '.about_company, '
         . $this->drives . '.eligibility_criteria, ' . $this->drives . '.last_date, '
-        . $this->drives . '.document, ' . $this->drives . '.document_type, '
         . $this->students_profile . '.first_name, '
         . $this->students_profile . '.last_name, ' . $this->students_profile . '.USN, '
         . $this->students_profile . '.register_number, ' . $this->students_profile . '.phone, '
         . $this->students_profile . '.mail, ' . $this->students_profile . '.date_of_birth, '
-        . $this->students_profile . '.current_semester, ' . $this->students_profile . '.branch_of_study, '
+        . $this->students_profile . '.current_semester, ' . $this->students_profile . '.department_id, '
         . $this->students_profile . '.sslc_aggregate, ' . $this->students_profile . '.12th_diploma_aggregate, '
         . $this->students_profile . '.ug_aggregate, ' . $this->students_profile . '.pg_aggregate, '
         . $this->students_profile . '.current_backlogs, ' . $this->students_profile . '.history_of_backlogs, '
         . $this->students_profile . '.detained_years, ' . $this->students_profile . '.annual_income';
     $query = 'SELECT ' . $columns . ' FROM ((' . $this->table . ' INNER JOIN ' . $this->drives
-        . ' ON drive_id = :drive_id AND ' . $this->table . '.drive_id = ' . $this->drives . '.drive_id ) INNER JOIN ' . $this->students_profile
+        . ' ON ' . $this->table . '.drive_id = :drive_id ) INNER JOIN ' . $this->students_profile
         . ' ON ' . $this->table . '.student_id = ' . $this->students_profile . '.student_id ) ORDER BY ' . $this->table . '.drive_id';
 
         $stmt = $this->conn->prepare($query);
@@ -126,11 +123,10 @@ class Students_register
 
         if ($stmt->execute()) {
             // Fetch the data
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // If data exists, return the data
-            if ($row) {
-                return $row;
+            if ($stmt) {
+                return $stmt;
             }
         }
 
@@ -144,12 +140,11 @@ class Students_register
         . '.drive_id, ' . $this->table . '.student_id, ' . $this->drives . '.drive_id, '
         . $this->drives . '.job_description, ' . $this->drives . '.about_company, '
         . $this->drives . '.eligibility_criteria, ' . $this->drives . '.last_date, '
-        . $this->drives . '.document, ' . $this->drives . '.document_type, '
         . $this->students_profile . '.first_name, '
         . $this->students_profile . '.last_name, ' . $this->students_profile . '.USN, '
         . $this->students_profile . '.register_number, ' . $this->students_profile . '.phone, '
         . $this->students_profile . '.mail, ' . $this->students_profile . '.date_of_birth, '
-        . $this->students_profile . '.current_semester, ' . $this->students_profile . '.branch_of_study, '
+        . $this->students_profile . '.current_semester, ' . $this->students_profile . '.department_id, '
         . $this->students_profile . '.sslc_aggregate, ' . $this->students_profile . '.12th_diploma_aggregate, '
         . $this->students_profile . '.ug_aggregate, ' . $this->students_profile . '.pg_aggregate, '
         . $this->students_profile . '.current_backlogs, ' . $this->students_profile . '.history_of_backlogs, '

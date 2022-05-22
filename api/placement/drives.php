@@ -67,13 +67,17 @@ class Drives_api extends Drives
         // Get input data as json
         $data = json_decode(file_get_contents("php://input"));
 
+        if($_FILES['document']['size'] >= 1572864){
+            send(400, "error", "file size must be less than 1.5MB");
+            die();
+        }
         // Clean the data
         $this->Drive->job_description = $_POST['job_description'];
         $this->Drive->about_company = $_POST['about_company'];
         $this->Drive->eligibility_criteria = $_POST['eligibility_criteria'];
 
-        $last_date = date('Y-m-01', strtotime($_POST['last_date']));
-        $this->Drive->last_date = $last_date;
+        // $last_date = date('Y-m-01', strtotime($_POST['last_date']));
+        $this->Drive->last_date = $_POST['last_date'];
 
         $this->Drive->document = file_get_contents($_FILES['document']['tmp_name']);
         $this->Drive->document_type = $_FILES['document']['type'];
@@ -85,8 +89,8 @@ class Drives_api extends Drives
         if (!$all_data) {
             // If no drive exists, insert and get_by_id the data
             if ($this->Drive->post()) {
-                $row = $this->Drive->read_row();
-                $this->get_by_id($row['drive_id']);
+                // $row = $this->Drive->read_row();
+                $this->get();
             } else {
                 send(400, 'error', 'drive cannot be created');
             }
@@ -179,6 +183,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
+// DELETE a existing drive
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    $Drives_api = new Drives_api();
+    $Drives_api->delete_by_id();
+}
+
 // To check if admin is logged in
 loggedin();
 
@@ -194,10 +204,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $Drives_api = new Drives_api();
     $Drives_api->put();
-}
-
-// DELETE a existing drive
-if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    $Drives_api = new Drives_api();
-    $Drives_api->delete_by_id();
 }

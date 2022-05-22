@@ -6,10 +6,10 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-require_once '../../../../config/DbConnection.php';
-require_once '../../../../models/Students_register.php';
-require_once '../../../../utils/send.php';
-require_once '../../../../utils/loggedin.php';
+require_once '../../config/DbConnection.php';
+require_once '../../models/Students_register.php';
+require_once '../../utils/send.php';
+require_once '../../utils/loggedin.php';
 
 class Students_register_api extends Students_register
 {
@@ -49,11 +49,16 @@ class Students_register_api extends Students_register
     public function get_by_id($id)
     {
         // Get the recruiters from DB
-        $this->Students_register->student_register_id = $id;
+        $this->Students_register->drive_id = $id;
         $all_data = $this->Students_register->read_by_drive();
 
+        $data = array();
         if ($all_data) {
-            echo json_encode($all_data);
+            while ($row = $all_data->fetch(PDO::FETCH_ASSOC)) {
+                // print_r($row);
+                array_push($data, $row);
+            }
+            echo json_encode($data);
             die();
         } else {
             send(400, 'error', 'no recruiters found');
@@ -136,7 +141,7 @@ class Students_register_api extends Students_register
         // Check for student registration existance
         $all_data = $this->Students_register->read_row();
 
-        if(!$all_data){
+        if (!$all_data) {
             send(400, 'error', 'no student registration found for ID: ' . $_GET['ID']);
             die();
         }
@@ -161,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 // To check if student is logged in
-if(!isset($_SESSION['student_id'])){
+if (!isset($_SESSION['student_id'])) {
     send(400, 'error', 'no student logged in');
     die();
 }
